@@ -65,6 +65,7 @@ function go {
             cd "$1"
         else
             echo "No such entry"
+            echo "$1" >> ~/bashmarks_not_found_log
         fi
     fi
 }
