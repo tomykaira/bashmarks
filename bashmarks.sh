@@ -53,7 +53,20 @@ function s {
 function go {
     check_help $1
     source $SDIRS
-    cd "$(eval $(echo echo $(echo \$DIR_$1)))"
+    GOTO="$(eval $(echo echo $(echo \$DIR_$1)))"
+    if [ -n "$GOTO" ]; then
+        if [ -d "$GOTO" ]; then
+            cd "$GOTO"
+        else
+            echo "$GOTO: no longer exists"
+        fi
+    else
+        if [ -d "$1" ]; then
+            cd "$1"
+        else
+            echo "No such entry"
+        fi
+    fi
 }
 
 # print bookmark
